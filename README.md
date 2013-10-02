@@ -1,4 +1,2 @@
-labibi
-======
+See http://2013-cse801.readthedocs.org/en/latest/
 
-See http://labibi.readthedocs.org/en/latest/

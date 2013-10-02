@@ -1,4 +1,8 @@
 Wed, Oct 2, 2013 - ipythonblocks; read QC
 #########################################
 
-Fiz!
+Outline:
+
+0. Introduction; office hours?
+1. ipythonblocks introduction; in-class exercises.
+2. Read trimming and QC; FastQC reports.
