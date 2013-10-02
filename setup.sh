@@ -1,15 +1,7 @@
 cd /root
 
-if [ \! -d /usr/local/blast-data ]; then
-   curl -O ftp://ftp.ncbi.nih.gov/blast/executables/release/2.2.24/blast-2.2.24-x64-linux.tar.gz
-   tar xzf blast-2.2.24-x64-linux.tar.gz
-   cp blast-2.2.24/bin/* /usr/local/bin
-   cp -r blast-2.2.24/data /usr/local/blast-data
-fi
-
 pip install screed
-
-git clone https://github.com/ngs-docs/ngs-scripts /usr/local/share/ngs-scripts
+pip install ipythonblocks
 
 apt-get -y install lighttpd
 
@@ -27,18 +19,11 @@ pip install -U pyzmq
 
 cd /usr/local/notebooks
 rm *.ipynb
-curl -O https://raw.github.com/ged-lab/2013-msu-zero-entry/master/graph-blast-bitscore.ipynb
-curl -O https://raw.github.com/ged-lab/2013-msu-zero-entry/master/filter-blast-csv.ipynb
-curl -O https://raw.github.com/ged-lab/2013-msu-zero-entry/master/monty-hall.ipynb
-curl -O https://raw.github.com/ged-lab/2013-msu-zero-entry/master/coin-flips.ipynb
+curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class1-ipythonblocks.ipynb
 
 cd /usr/local/share
-rm -fr khmer
-git clone https://github.com/ged-lab/khmer.git
-cd khmer
-git checkout 2013-caltech-cemi
-make all
-echo 'export PYTHONPATH=/usr/local/share/khmer/python' >> ~/.bashrc
-source ~/.bashrc
+curl -O http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.zip
+unzip fastqc_v0.10.1.zip
+chmod +x FastQC/fastqc
 
-shutdown -r now
+#shutdown -r now
