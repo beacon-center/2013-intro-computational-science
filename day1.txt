@@ -1,8 +1,87 @@
 Wed, Oct 2, 2013 - ipythonblocks; read QC
 #########################################
 
-Outline:
+`Google doc for machine names <https://docs.google.com/spreadsheet/ccc?key=0ArcOEBWnXSBidEVPSll3VXhyQVZjRXZLT25Fb0VVX1E#gid=0>`__
 
-0. Introduction; office hours?
-1. ipythonblocks introduction; in-class exercises.
-2. Read trimming and QC; FastQC reports.
+Outline of day:
+
+0. Survey.
+----------
+
+(until ~20 minutes after)
+
+You should all have received a survey e-mail from Claudia Vergara.
+Please fill out survey; I will leave room and return at 20 after.
+
+1. Introduction; office hours; grading and hand-in policy.
+----------------------------------------------------------
+
+I've already done the introduction at the workshops, but basically
+we're going to show you three things in this class: (1) some basic
+programming, (2) how to run and think about sequence data analysis,
+and (3) how to do some simple evolutionary modeling.
+
+Lectures
+~~~~~~~~
+
+There will be some online lectures, especially about technical stuff
+like starting up machines, handing in homework, and various aspects
+of programming and running NGS programs.
+
+Homework and grading
+~~~~~~~~~~~~~~~~~~~~
+
+If you're auditing you're expected to hand in the homeworks until
+you stop auditing, and vice versa.
+
+Grading will be P/F each week, with each week representing 10% of the
+final grade.
+
+Homework handed in after the official due date/time may not be graded.
+
+If I do not send you comments on your homework by the end of the
+weekend following hand-in, (Sunday evening), you get a PASS garde.
+
+I would suggest that you get together in study groups to do the
+homework.
+
+Office hours
+~~~~~~~~~~~~
+
+Primary support will be via e-mail.  I can schedule a Google Hangout
+with you if you need one-on-one or one-on-group time.  I propose to
+specify one or two times a week where I will be available, decided on
+by Doodle polls.  Pushback?
+
+2. ipythonblocks introduction; in-class exercises.
+--------------------------------------------------
+
+Pick one of the machines randomly (see 
+`Google doc for machine names <https://docs.google.com/spreadsheet/ccc?key=0ArcOEBWnXSBidEVPSll3VXhyQVZjRXZLT25Fb0VVX1E#gid=0>`__) and open up a new IPython
+Notebook link.  (Password: 'beacon'.)
+
+Select the notebook 'class1-ipythonblocks' & make a copy!
+
+3. Read trimming and QC; FastQC reports.
+----------------------------------------
+
+A short introduction to NGS sequencing, and what can go wrong; a
+FastQC report.  (Lecture whiteboard: `go to JotWithMe/titus801-1
+<http://jotwithme.com/view?session=titus801-1>`__.)
+
+To see a FastQC report, pick one of the machines randomly (see `Google
+doc for machine names
+<https://docs.google.com/spreadsheet/ccc?key=0ArcOEBWnXSBidEVPSll3VXhyQVZjRXZLT25Fb0VVX1E#gid=0>`__)
+and open up the associated FastQC link.  To generate this, I did ::
+
+   cd /usr/local/share
+   curl -O http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.zip
+   unzip fastqc_v0.10.1.zip
+   chmod +x FastQC/fastqc
+
+   cd /root
+   curl -O http://athyra.idyll.org/~t/100k_1.fq
+   curl -O http://athyra.idyll.org/~t/100k_2.fq
+
+   mkdir /var/www/fastqc
+   /usr/local/share/FastQC/fastqc 100k_1.fq 100k_2.fq -o /var/www/fastqc

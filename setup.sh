@@ -26,4 +26,11 @@ curl -O http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.
 unzip fastqc_v0.10.1.zip
 chmod +x FastQC/fastqc
 
+cd /root
+curl -O http://athyra.idyll.org/~t/100k_1.fq
+curl -O http://athyra.idyll.org/~t/100k_2.fq
+
+mkdir /var/www/fastqc
+/usr/local/share/FastQC/fastqc 100k_1.fq 100k_2.fq -o /var/www/fastqc
+
 #shutdown -r now
