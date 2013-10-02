@@ -62,6 +62,8 @@ Notebook link.  (Password: 'beacon'.)
 
 Select the notebook 'class1-ipythonblocks' & make a copy!
 
+See a static copy of the notebook `here <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class1-ipythonblocks.ipynb>`__.
+
 3. Read trimming and QC; FastQC reports.
 ----------------------------------------
 
