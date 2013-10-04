@@ -1,0 +1,213 @@
+Understanding Read Formats and Quality Controlling Data
+=======================================================
+
+Note: there are generic instructions for doing quality control at the
+`khmer-protocols Web site
+<https://khmer-protocols.readthedocs.org/>`__.  These should work for
+most Illumina data sets, even those consisting of multiple files.
+Below, we've done a bit of a shorthand because we only have a small
+data set to filter.
+
+The fastq Format
+````````````````
+After spending weeks, nay, months of time on designing your study and planning your
+bioinformatics goals (right?), you finally get the email from you sequencing
+center: they have your data! You get a link to an ftp server and some login information,
+and are presented with a list of files. But what are these formats?
+
+Most commonly, you'll get your data in fastq format. fastq is a really simple
+way of representing sequence in plain text which is understood by pretty much
+every piece of bioinformatics software. A fastq file can contain anywhere from
+one to billions of sequences, and is usually used for reads before they have been
+assembled. A faux example of the format is::
+
+    @read1
+    +
+    ATCGTAGCTAGCTAGCT
+    +
+    DH<F4CFDFH@FHIBBE
+    
+The first line is the name of the sequence; there is no set format for this, though
+most of the big centers like the NCBI have set standards. This is followed by
+a '+', a line break, and then the sequence itself, which can be either nucleotide or protein.
+Then we have another line break, a '+', and a line break, followed by the quality line.
+
+The quality line is the part of the format which is not immediately obvious. This line follows
+what is known as the phred format. Each ASCII character corresponds to a base,
+and its integer mapping is used in the equation :math:`P = 10^{-Q / 10}`,
+where :math:`Q` is the phred score and :math:`P` is the probability that the base
+is incorrectly called.
+
+The counterpart to fastq is fasta, which is essentially fastq without the quality
+score and a minor formatting change::
+
+    >read1
+    ATCGTAGGTAGGATATA
+    
+fasta is usually output by assembly programs, and can be used if data has already
+been quality controlled and needs to be a more manageable size. However, if you're
+not sure what preprocessing steps your data has been through, but you have fasta
+instead of fastq, you'd be well-off to make sure of what those steps were.
+
+
+Getting the Data
+````````````````
+Now that you know a little about the format, let's get some data. The data set
+we'll be using is from everyone's favorite bacterium, E. coli. We'll use the
+command line tool curl to download it to our Amazon machines::
+
+    cd /mnt
+    mkdir ecoli
+    cd ecoli
+    curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR390/SRR390202/SRR390202_1.fastq.gz
+    curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR390/SRR390202/SRR390202_2.fastq.gz
+
+The data came from `this <http://www.ncbi.nlm.nih.gov/pubmed/22522955>`__ study,
+if you're interested.
+
+To take a quick look at the files, use less::
+
+    less SRR390202_1.fastq.gz
+
+Hit 'q' to quit less.
+
+These reads are compressed with gzip to save some space, and are in two files, 
+because they are paired -- the first read in ``SRR390202_1.fastq.gz``
+is paired with the first read in ``SRR390202_2.fastq.gz`` and so on. Some programs
+prefer paired reads to be interleaved, that is, in the same file alternating between
+the first and second read pair. Many programs also require the name field in
+the fasta/q to explicitly state which part of a pair a read is with a /1 or /2; for example,
+in an interleaved file, you might have::
+
+    @SRR390202.1 M10_0139:1:2:18915:1321/1
+    ATCAAGAAAGATTTTAACAGCATTGAC
+    +
+    ECCFFFDDHGHFDHJJJJIGIDIJJJJ
+    @SRR390202.1 M10_0139:1:2:18915:1321/2
+    GTTCATAGTGACAAGGTAATATTTGTC
+    +
+    FDFFFFHHGGIJIF?CIGJJGI@FEFH
+    
+Naturally, because this is a standard, almost every program has a different way of
+doing it. So, be sure to double check the pairing format in your data!
+
+
+Getting the Dependencies
+````````````````````````
+
+Before we can work with our data, we need to grab a few more dependencies. We'll download screed, which is
+a simple python module for parsing fasta files developed by our lab at MSU::
+
+    pip install screed
+
+And then khmer, which is a Python interface to a really fast (and awesome) piece
+of software for counting k-mers, also developed by our lab (more on that later)::
+
+    cd /usr/local/share
+    git clone https://github.com/ged-lab/khmer.git
+    cd khmer
+    git checkout 2013-caltech-cemi
+    make
+
+Now that we've downloaded and built khmer, we'll add it to the system's python
+PATH so that our scripts know where to find it::
+
+    echo 'export PYTHONPATH=/usr/local/share/khmer/python' >> ~/.bashrc
+    source ~/.bashrc
+
+Get Trimmomatic, which is used for adapter removal and quality filtering::
+
+    curl -O http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.30.zip
+    unzip Trimmomatic-0.30.zip
+    cd Trimmomatic-0.30/
+    cp trimmomatic-0.30.jar /usr/local/bin
+    cp -r adapters /usr/local/share/adapters
+
+And then fastx, and its dependencies, which is another tool for quality filtering::
+
+    cd /root
+    curl -O http://hannonlab.cshl.edu/fastx_toolkit/libgtextutils-0.6.1.tar.bz2
+    tar xjf libgtextutils-0.6.1.tar.bz2
+    cd libgtextutils-0.6.1/
+    ./configure && make && make install
+
+    cd /root
+    curl -O http://hannonlab.cshl.edu/fastx_toolkit/fastx_toolkit-0.0.13.2.tar.bz2
+    tar xjf fastx_toolkit-0.0.13.2.tar.bz2
+    cd fastx_toolkit-0.0.13.2/
+    ./configure && make && make install
+
+And finally install FastQC::
+
+    cd /usr/local/share
+    curl -O http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.zip
+    unzip fastqc_v0.10.1.zip
+    chmod +x FastQC/fastqc
+
+Assessing your Data with FastQC
+```````````````````````````````
+
+Before you go wildly charging at your data with trimmers and filters,
+it's always a good idea to know what your data looks like ahead of
+time. The program we will use for this is FastQC, which parses the
+quality information from all the reads and produces handy charts and
+statistics::
+
+    cd /mnt/ecoli
+    mkdir /root/Dropbox/fastqc_before
+    /usr/local/share/FastQC/fastqc *.fastq.gz -o /root/Dropbox/fastqc_before
+
+(Before you run this, you'll need to have Dropbox working -- see :doc:`amazon/installing-dropbox`.)
+
+This will take ~15-20 minutes.  Once it's done, you'll have some results
+in your Dropbox folder -- on your local computer, go find your Dropbox
+directory and look for the fastqc_report.html files -- you should have
+two of them, one under the folder 'SRR390202_1_fastqc' and the other
+under 'SRR390202_2_fastqc'.
+
+Trimming Your Data
+``````````````````
+
+Based on the FastQC report for the reads, we should probably quality
+trim them.  Although there aren't any flagged overrepresented
+sequences, it's good practice to filter for adapters as well, which
+can confound assemblers. Trimmomatic can both filter adapters and
+quality trim, though we'll only use it for adapter removal here::
+
+    mkdir trim
+    cd trim
+    java -jar /usr/local/bin/trimmomatic-0.30.jar PE ../SRR390202_1.fastq.gz ../SRR390202_2.fastq.gz s1_pe s1_se s2_pe s2_se ILLUMINACLIP:/usr/local/share/adapters/TruSeq3-PE.fa:2:30:10
+    
+fastx is an alternative which performs many of the same functions as
+Trimmomatic.  We'll use it for quality filtering; the following flags
+direct its fastq_quality_filter module to keep reads if 50% of the
+bases have a quality score over 30::
+    
+    /usr/local/share/khmer/scripts/interleave-reads.py s1_pe s2_pe > combined.fq
+    fastq_quality_filter -Q33 -q 30 -p 50 -i combined.fq > combined-trim.fq
+    fastq_quality_filter -Q33 -q 30 -p 50 -i s1_pe > s1_se.filt
+
+We also interleaved the reads in the previous block, as fastx requires
+it. We'll now separate out the reads which had their pair thrown out
+into their own file, combine them with the output of Trimmomatic, and
+compress the results::
+
+    /usr/local/share/khmer/scripts/extract-paired-reads.py combined-trim.fq
+    cat combined-trim.fq.se s1_se.filt | gzip -9c > ../SRR390202.se.qc.fq.gz
+    gzip -9c combined-trim.fq.pe > ../SRR390202.pe.qc.fq.gz
+
+Finally, move up a directory and get rid of all the unneeded intermediate files::
+
+    cd ../
+    rm -fr trim
+    
+Reassess Data Quality
+`````````````````````
+
+Once the reads have been quality-controlled, we should check to make
+sure that our measures were actually helpful::
+
+    mkdir /root/Dropbox/fastqc_after
+    /usr/local/share/FastQC/fastqc SRR390202.pe.qc.fq.gz SRR390202.se.qc.fq.gz -o /root/Dropbox/fastqc_after
+    
+Check the output the same way as above.

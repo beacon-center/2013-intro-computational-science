@@ -1,22 +1,45 @@
 Homework 1 (due Tuesday, Oct 8th, by midnight PST)
-#################################
+##################################################
 
 (Not yet fully written up.)
 
 0. Start up an EC2 machine.
+---------------------------
+
+Work through the instructions here: :doc:`amazon/index` for starting
+up an EC2 machine on AWS.
+
+A brief checklist:
+
+a. Create an AWS account and log in;
+b. Launch a machine; use m1.xlarge.
+c. Adjust your security rules for the machine and select 'default' security profile.
+d. Make sure you can both log into your machine with TeraTerm Pro SSH *and* with IPython Notebook.
+e. Install Dropbox on your EC2 machine (see :doc:`amazon/installing-dropbox`)
+
+Two notes:
+
+ * be sure to save your work to Dropbox and shut down your machines when you
+   are done working;
+
+ * for now, you will need to pay for your own EC2 machines.  This should be
+   less than $2-3/wk.  If you are a BEACON-affiliated graduate student we
+   can help you pay.
 
 1. Work through some programming exercises; hand in ipynb via git.
+------------------------------------------------------------------
 
-2. Run FastQC on full E. coli data set.
+TODO
 
-3. Run quality control stuff on data set.
+2. Run FastQC on full E. coli data set and trimmed data set
+-----------------------------------------------------------
 
-4. Run FastQC on *that*.
+Log in to your m1.xlarge EC2 machine via SSH and follow through all of :doc:`week1/reads_and_qc`.
 
-Videos:
+.. Videos:
 
- - spinning up instance;
- - handing in files via github;
- - running FastQC
+.. - spinning up instance;
+.. - handing in files via github;
+.. - running FastQC
 
 .. next week: run filter-abund trimming, mismatch pos.
