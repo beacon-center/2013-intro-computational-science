@@ -29,7 +29,40 @@ Two notes:
 1. Work through some programming exercises; hand in ipynb via git.
 ------------------------------------------------------------------
 
-TODO
+Log in to your EC2 instance via SSH and install ipythonblocks::
+
+   pip install ipythonblocks
+
+download the homework notebook::
+
+   cd /usr/local/notebooks
+   curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw1-ipythonblocks.ipynb
+
+Then, go to 'https://' + your EC2 machine name to connect to EC2.  Use
+the password 'beacon' to log into the console and then open
+hw1-ipythonblocks.  Solve the problems and then download the notebook
+(file... save as...) and e-mail it to me as an attachment, with
+'cse801 hw1' in the subject line of the e-mail.  Please rename the
+attachment so it includes your last name or NetID somewhere.
+
+Note that you can see a static version of the notebook from class
+`here
+<http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class1-ipythonblocks.ipynb>`__,
+with a download link; if you want to work with it, you can upload this
+notebook to your EC2 machine following the instructions below, under
+"A few notes."
+
+A few notes:
+
+ - if you aren't going to work on this problem for a while and want to
+   shut down your machine, you can download your ipython notebook by
+   going to 'File' and 'Save As ipynb'; this downloaded ipython
+   notebook can be reuploaded by dragging it from your computer into
+   the IPython Notebook console.  This replaces the 'download' command
+   above.
+
+ - it is not a failure to use Google to ask questions like "how do I test
+   if a number is even in Python?" or "how do I multiply numbers in Python?"
 
 2. Run FastQC on full E. coli data set and trimmed data set
 -----------------------------------------------------------
