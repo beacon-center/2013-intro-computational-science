@@ -14,7 +14,7 @@ A brief checklist:
 a. Create an AWS account and log in;
 b. Launch a machine; use m1.xlarge.
 c. Adjust your security rules for the machine and select 'default' security profile.
-d. Make sure you can both log into your machine with TeraTerm Pro SSH *and* with IPython Notebook.
+d. Make sure you can both log into your machine with SSH *and* with IPython Notebook.
 e. Install Dropbox on your EC2 machine (see :doc:`amazon/installing-dropbox`)
 
 Two notes:
