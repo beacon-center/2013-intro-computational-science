@@ -17,6 +17,10 @@ c. Adjust your security rules for the machine and select 'default' security prof
 d. Make sure you can both log into your machine with SSH *and* with IPython Notebook.
 e. Install Dropbox on your EC2 machine (see :doc:`amazon/installing-dropbox`)
 
+There's a video from last year `here
+<http://www.youtube.com/watch?v=JMedTCa5lec&feature=youtu.be>`__ that
+is only slightly out of date.
+
 Two notes:
 
  * be sure to save your work to Dropbox and shut down your machines when you
@@ -68,6 +72,9 @@ A few notes:
 -----------------------------------------------------------
 
 Log in to your m1.xlarge EC2 machine via SSH and follow through all of :doc:`week1/reads_and_qc`.
+
+If you are interested in what the results mean and don't want to
+wait 'til Wednesday, watch `this 12 minute video <http://www.youtube.com/watch?v=bz93ReOv87Y>`__.
 
 .. Videos:
 
