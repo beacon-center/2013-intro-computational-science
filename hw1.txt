@@ -33,8 +33,8 @@ Two notes:
    less than $2-3/wk.  If you are a BEACON-affiliated graduate student we
    can help you pay.
 
-1. Work through some programming exercises; hand in ipynb via git.
-------------------------------------------------------------------
+1. Work through some programming exercises
+------------------------------------------
 
 Log in to your EC2 instance via SSH and install ipythonblocks::
 
