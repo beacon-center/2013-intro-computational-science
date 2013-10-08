@@ -3,7 +3,7 @@ Homework 1 (due Tuesday, Oct 8th, by midnight PST)
 
 .. note::
 
-   Need help?  Go to http://angus.askbot.org/ to ask questions and see
+   Need help?  Go to http://angus.askbot.com/ to ask questions and see
    other people's answers!
 
 0. Start up an EC2 machine.
