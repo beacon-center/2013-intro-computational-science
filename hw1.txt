@@ -6,6 +6,13 @@ Homework 1 (due Tuesday, Oct 8th, by midnight PST)
    Need help?  Go to http://angus.askbot.com/ to ask questions and see
    other people's answers!
 
+.. note::
+
+   Keep getting disconnected?  This is probably because of inactivity
+   or time limits on network connections (on your computer, at your
+   university, or whatever).  See :doc:`amazon/using-screen` for
+   the best way to deal with this.
+
 0. Start up an EC2 machine.
 ---------------------------
 
