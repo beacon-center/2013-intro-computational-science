@@ -18,6 +18,8 @@ Long running jobs; using screen.
 
 Dropbox.
 
+Shell vs IPython Notebook.
+
 (I will deliver videos of all of these tonight.)
 
 2. Shotgun sequencing with Illumina
@@ -61,3 +63,5 @@ See: `solutions <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2
 
 Last week was "control flow" -- for and if.  This week, "data structures" --
 ways of storing aggregate information.
+
+See: `in-class notebook <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class2-ipythonblocks.ipynb>`__.
