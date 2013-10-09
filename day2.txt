@@ -1,0 +1,63 @@
+Wed, Oct 9, 2013 - Illumina; shotgun sequencing; read QC
+########################################################
+
+.. `Google doc for machine names <https://docs.google.com/spreadsheet/ccc?key=0ArcOEBWnXSBidEVPSll3VXhyQVZjRXZLT25Fb0VVX1E#gid=0>`__
+
+Outline of day:
+
+1. Technical challenges of homework; long-running jobs
+------------------------------------------------------
+
+Review: starting up machines; connecting with SSH or IPython Notebook.
+
+Copy/paste and putting in complete commands.
+
+Disconnections.
+
+Long running jobs; using screen.
+
+Dropbox.
+
+(I will deliver videos of all of these tonight.)
+
+2. Shotgun sequencing with Illumina
+-----------------------------------
+
+How Illumina works.
+
+Assumptions underlying shotgun sequencing.
+
+How the data is delivered.
+
+- FASTQ format (see http://en.wikipedia.org/wiki/FASTQ_format)
+- Phred quality scores (see http://en.wikipedia.org/wiki/FASTQ_format#Quality)
+- read length
+
+3. Quality scores, and quality evaluation
+-----------------------------------------
+
+Discuss some FastQC results here:
+http://athyra.idyll.org/~t/SRR390202_1_fastqc/fastqc_report.html
+
+and here:
+http://athyra.idyll.org/~t/SRR390202.pe.qc.fq_fastqc/fastqc_report.html
+
+What other ways might there be to evaluate the quality of your
+sequencing data?  (Think about things you already know, or can
+assume...?)
+
+4. What do you do with sequencing data?
+---------------------------------------
+
+Mapping vs assembly. (This will be a continuing theme :)
+
+5. Homework solutions
+---------------------
+
+See: `solutions <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw1-ipythonblocks-SOLUTIONS.ipynb>`__.
+
+6. More Python
+--------------
+
+Last week was "control flow" -- for and if.  This week, "data structures" --
+ways of storing aggregate information.
