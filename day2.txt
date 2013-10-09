@@ -25,6 +25,8 @@ Shell vs IPython Notebook.
 2. Shotgun sequencing with Illumina
 -----------------------------------
 
+(To follow along with lecture go to http://jotwithme.com/ and enter 'titus'.)
+
 How Illumina works.
 
 Assumptions underlying shotgun sequencing.
