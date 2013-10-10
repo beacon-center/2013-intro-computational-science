@@ -1,0 +1,118 @@
+==============================
+Basic (single-genome) assembly
+==============================
+
+Machine type needed: m1.xlarge.
+
+(You'll need to have screed and khmer installed; follow the instructions
+at the top of :doc:`../week1/reads_and_qc`.)
+
+We're going to work through an assembly pipeline that uses a Brown Lab
+approach called `digital normalization
+<http://ged.msu.edu/papers/2012-diginorm/>`__, which I'll talk about
+tomorrow.  For now, just view it as a way to get decent assemblies
+faster than you might otherwise ;).
+
+.. note::
+
+   Many of the commands below take 5-10 minutes to run, or longer.  You
+   may want to look at using a program called 'screen' to run long-running
+   programs safely -- see :doc:`../amazon/using-screen`.
+
+Before we do anything with data, make an assembly directory::
+
+   cd /mnt
+   mkdir assembly
+   cd assembly
+   
+Preparing the data yourself
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Download the quality-filtered data (see :doc:`../week1/reads_and_qc`
+to make them yourself)::
+
+   curl -O https://s3.amazonaws.com/public.ged.msu.edu/SRR390202.pe.qc.fq.gz
+   curl -O https://s3.amazonaws.com/public.ged.msu.edu/SRR390202.se.qc.fq.gz
+
+Now, run it through digital normalization::
+   
+   /usr/local/share/khmer/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 20 -p SRR390202.pe.qc.fq.gz --savehash normC20k20.kh
+   
+   /usr/local/share/khmer/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 20 SRR390202.se.qc.fq.gz --savehash normC20k20.kh --loadhash normC20k20.kh
+
+The above commands produce '.keep' files; the first command normalizes the
+paired-end file (-p) and the second does the single-end file.
+
+Now, remove low-abundance k-mers as likely errors::
+   
+   /usr/local/share/khmer/scripts/filter-abund.py normC20k20.kh *.keep
+
+This will produce a set of files '.abundfilt' that contain the error-trimmed
+data.  The paired-end abundfilt file will contain newly orphaned reads now,
+ones where left or right reads were removed without their pair being removed;
+the following command separates orphans into a .se file, while paired reads
+are placed in a .pe file::
+   
+   /usr/local/share/khmer/scripts/extract-paired-reads.py *.pe.qc.fq.gz.keep.abundfilt
+
+After error trimming, we run another round of digital normalization::
+   
+   /usr/local/share/khmer/scripts/normalize-by-median.py -k 20 -C 5 -x 2e8 -N 4 -p *.abundfilt.pe --savehash normC5k20.kh
+   
+   /usr/local/share/khmer/scripts/normalize-by-median.py -k 20 -C 5 -x 2e8 -N 4 *.abundfilt.se *.se.qc.fq.gz.keep.abundfilt --loadhash normC5k20.kh --savehash normC5k20.kh
+
+on the PE and SE files variously.  We now end with three files: ``SRR390202.pe.qc.fq.gz.keep.abundfilt.pe.keep``, ``SRR390202.pe.qc.fq.gz.keep.abundfilt.se.keep``, and ``SRR390202.se.qc.fq.gz.keep.abundfilt.keep``.  The first file is still paired end/interleaved (try typing ``head SRR390202.pe.qc.fq.gz.keep.abundfilt.pe.keep``) and the other two contain only orphaned sequences (left OR right, never both).
+
+Using Velvet to do assembly
+===========================
+
+Velvet is a fast and decent assembler.  It's no longer considered one of
+the best assemblers, but it's robust and easy to use so we like using it
+in tutorials.
+
+Install the Velvet software::
+   
+   cd /root
+   curl -O http://www.ebi.ac.uk/~zerbino/velvet/velvet_1.2.10.tgz
+   tar xzf velvet_1.2.10.tgz
+   cd velvet_1.2.10
+   make MAXKMERLENGTH=51
+   cp velvet? /usr/local/bin
+
+Return to the assembly directory::
+
+   cd /mnt/assembly
+   
+Then run velvet for a k of 31::
+   
+   velveth ecoli.31 31 -shortPaired -fastq SRR390202.pe.qc.fq.gz.keep.abundfilt.pe.keep -short SRR390202.pe.qc.fq.gz.keep.abundfilt.se.keep SRR390202.se.qc.fq.gz.keep.abundfilt.keep
+   velvetg ecoli.31 -exp_cov auto
+
+This produces a directory 'ecoli.31', with a file 'contigs.fa' in it;
+look at this with 'head'::
+
+   head ecoli.31/contigs.fa
+
+You can look at some assembly statistics using a program that's part of
+khmer, called assemstats3.py::
+   
+   python /usr/local/share/khmer/sandbox/assemstats3.py 1000 ecoli.31/contigs.fa
+
+If you want to see the N50 for the data set, you can run 'assemstats2.py'::
+
+   python /usr/local/share/khmer/sandbox/assemstats2.py 1000 ecoli.21/contigs.fa
+
+To extract only those sequences >= 200 bp::
+
+   python /usr/local/share/khmer/sandbox/extract-long-sequences.py 200 ecoli.31/contigs.fa > ecoli-k31.fa
+
+This will create a file '/mnt/assembly/ecoli-k31.fa' that contains all
+assembled sequences >= 200 bp.
+
+We can also go run a BLAST server now to check out our assembly -- go see
+:doc:`blastkit`.
+
+.. BLAST comparison
+.. mapping
+.. exercise
+.. blastkit
