@@ -1,0 +1,154 @@
+Homework 2 (due Tuesday, Oct 15th, at 11:59pm PST)
+##################################################
+
+.. note::
+
+   Need help?  Go to http://angus.askbot.com/ to ask questions and see
+   other people's answers!
+
+.. note::
+
+   See :doc:`amazon/using-screen` for information on using screen.
+
+1. Assemble E. coli.
+--------------------
+
+Follow :doc:`week2/assembly-lab`.
+
+2. Retrieve CRP_ECOLI from an assembly.
+---------------------------------------
+
+Go to http://www.ncbi.nlm.nih.gov/ and search the protein database for
+CRP_ECOLI.  Retrieve the FASTA version of this gene (just the amino
+acids).
+
+Next, run an assembly with a k other than 31: pick any odd k between 19
+and 51, and rerun the velvet etc. commands to produce an 'ecoli-kXX.fa'
+assembly.
+
+Install this assembly in a BLAST server (see :doc:`week2/blastkit`) and search
+it with the CRP_ECOLI protein sequence.
+
+Download the best match sequence, and e-mail it to me with your other
+HW.
+
+3. Compare the mismatch profiles for 4 different stages of reads.
+-----------------------------------------------------------------
+
+We're going to take four different collections of reads and map them
+to an assembled genome, then look at the read mismatch profile (where
+mismatches between the read and the assembly exist, plotted by position
+in read).  This is a way of looking at the overall error rate.
+
+First, install bowtie, which does read mapping::
+
+   cd /root
+   curl -O -L http://sourceforge.net/projects/bowtie-bio/files/bowtie/0.12.7/bowtie-0.12.7-linux-x86_64.zip
+   unzip bowtie-0.12.7-linux-x86_64.zip
+   cd bowtie-0.12.7
+   cp bowtie bowtie-build bowtie-inspect /usr/local/bin
+
+Now, make the E. coli assembly into something that bowtie can map reads to
+by indexing it::
+
+   cd /mnt/assembly
+   bowtie-build ecoli-k31.fa ecoli-k31
+
+Next, collect the four read data sets.  First, get 200k of the raw reads::
+
+   curl ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR390/SRR390202/SRR390202_1.fastq.gz | gunzip -c | head -800000 > raw-reads.fq
+
+Also collect the first 200k of the QC reads::
+
+   gunzip -c SRR390202.pe.qc.fq.gz | head -800000 > qc-reads.fq
+
+Take 200k reads from the diginorm processing step, and the abundfilt
+processing step, too::
+
+   head -800000 SRR390202.pe.qc.fq.gz.keep > dn1-reads.fq
+   head -800000 SRR390202.pe.qc.fq.gz.keep.abundfilt > fa-reads.fq
+
+Now, map all of them::
+
+   bowtie -p 2 ecoli-k31 -q raw-reads.fq raw-reads.map
+   bowtie -p 2 ecoli-k31 -q qc-reads.fq qc-reads.map  
+   bowtie -p 2 ecoli-k31 -q dn1-reads.fq dn1-reads.map
+   bowtie -p 2 ecoli-k31 -q fa-reads.fq fa-reads.map
+
+You should see output like this::
+
+   # reads processed: 200000
+   # reads with at least one reported alignment: 181936 (90.97%)
+   # reads that failed to align: 18064 (9.03%)
+   Reported 181936 alignments to 1 output stream(s)
+
+Take a look at the mapping files -- it shows which reads map where in
+the genome, and where the mismatches are for each read::
+
+   head raw-reads.map
+
+Now, let's convert each of these mapping files into a set of counts::
+
+   git clone https://github.com/ngs-docs/ngs-scripts.git /root/ngs-scripts
+
+   for i in *-reads.map
+   do
+   python /root/ngs-scripts/bowtie/map-profile.py $i > $i.count
+   done
+
+This will create a bunch of .count files, one for each .map file.
+
+To graph these files, go to your IPython Notebook (the https URL)
+and create a new notebook called hw2-mismatches-USERID.  In this notebook,
+put two cells.  First, ::
+
+   cd /mnt/assembly
+
+and second::
+
+   dn1_counts = numpy.loadtxt('dn1-reads.map.count')
+   fa_counts = numpy.loadtxt('fa-reads.map.count')
+   qc_counts = numpy.loadtxt('qc-reads.map.count')
+   raw_counts = numpy.loadtxt('raw-reads.map.count')
+
+When you execute these, it will load the files into Python; you can plot
+them in a third cell like so::
+
+   plot(qc_counts[:,0], qc_counts[:,1], label='qc')
+   plot(raw_counts[:, 0], raw_counts[:, 1], label='raw')
+   axis(ymin=0, ymax=80000, xmin=0, xmax=160)
+   xlabel('position in read')
+   ylabel('number of reads with mismatches at that position')
+   legend()
+
+This will plot the first column of the two given counts files (the
+position in the read) against the second column (the number of mismatches
+at that position).
+
+Play with the data a bit by adding cells to graph different
+combinations against each other, changing axes, etc.  Use the graphs
+to determine which data set has the most mismatches, save the
+notebook, and send it to me.
+
+4. Programming in Python: lists and dictionaries and functions, oh my!
+----------------------------------------------------------------------
+
+Log in to your EC2 instance via SSH and install ipythonblocks::
+
+   pip install ipythonblocks
+
+and then download a few notebooks::
+
+   cd /usr/local/notebooks
+   curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class2-ipythonblocks.ipynb
+   curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw1-ipythonblocks-SOLUTIONS.ipynb
+   curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw2-ipythonblocks.ipynb
+
+Connect to IPython Notebook ('https://' + your EC2 machine name) and
+solve the problems in hw2-ipythonblocks.ipynb.  Rename the notebook to
+something that has your identifier in it, download it, and e-mail it to
+me as an attachment.
+
+Note that 'class2-ipythonblocks' contains an introduction to lists and
+dictionaries, while 'hw1-ipythonblocks-SOLUTIONS' shows the solutions to the
+HW.
