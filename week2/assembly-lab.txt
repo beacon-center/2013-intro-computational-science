@@ -89,9 +89,11 @@ Then run velvet for a k of 31::
    velvetg ecoli.31 -exp_cov auto
 
 This produces a directory 'ecoli.31', with a file 'contigs.fa' in it;
-look at this with 'head'::
+this is your assembly.  Check it out with 'head'::
 
    head ecoli.31/contigs.fa
+
+Lots of DNA, right??
 
 You can look at some assembly statistics using a program that's part of
 khmer, called assemstats3.py::
