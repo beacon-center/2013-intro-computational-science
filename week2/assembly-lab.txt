@@ -102,7 +102,7 @@ khmer, called assemstats3.py::
 
 If you want to see the N50 for the data set, you can run 'assemstats2.py'::
 
-   python /usr/local/share/khmer/sandbox/assemstats2.py 1000 ecoli.21/contigs.fa
+   python /usr/local/share/khmer/sandbox/assemstats2.py 1000 ecoli.31/contigs.fa
 
 To extract only those sequences >= 200 bp::
 
