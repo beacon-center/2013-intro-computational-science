@@ -185,7 +185,7 @@ bases have a quality score over 30::
     
     /usr/local/share/khmer/scripts/interleave-reads.py s1_pe s2_pe > combined.fq
     fastq_quality_filter -Q33 -q 30 -p 50 -i combined.fq > combined-trim.fq
-    fastq_quality_filter -Q33 -q 30 -p 50 -i s1_pe > s1_se.filt
+    fastq_quality_filter -Q33 -q 30 -p 50 -i s1_se > s1_se.filt
 
 We also interleaved the reads in the previous block, as fastx requires
 it. We'll now separate out the reads which had their pair thrown out

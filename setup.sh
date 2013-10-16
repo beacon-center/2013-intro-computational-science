@@ -3,34 +3,39 @@ cd /root
 pip install screed
 pip install ipythonblocks
 
-apt-get -y install lighttpd
-
-if [ \! -f /etc/lighttpd/conf-enabled/10-cgi.conf ]; then
-   cd /etc/lighttpd/conf-enabled
-   ln -fs ../conf-available/10-cgi.conf ./
-   echo 'cgi.assign = ( ".cgi" => "" )' >> 10-cgi.conf
-   echo 'index-file.names += ( "index.cgi" ) ' >> 10-cgi.conf
-   /etc/init.d/lighttpd restart
-fi
-
 pip install -U ipython
 pip install -U ipython
 pip install -U pyzmq
+pip install ipythonblocks
+
 
 cd /usr/local/notebooks
 rm *.ipynb
-curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class1-ipythonblocks.ipynb
-
-cd /usr/local/share
-curl -O http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.zip
-unzip fastqc_v0.10.1.zip
-chmod +x FastQC/fastqc
+curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class3-lists-dicts-functions.ipynb
+curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class2-ipythonblocks.ipynb
+curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw1-ipythonblocks-SOLUTIONS.ipynb
+curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw2-ipythonblocks.ipynb
 
 cd /root
-curl -O http://athyra.idyll.org/~t/100k_1.fq
-curl -O http://athyra.idyll.org/~t/100k_2.fq
+curl -O -L http://sourceforge.net/projects/bowtie-bio/files/bowtie/0.12.7/bowtie-0.12.7-linux-x86_64.zip
+unzip bowtie-0.12.7-linux-x86_64.zip
+cd bowtie-0.12.7
+cp bowtie bowtie-build bowtie-inspect /usr/local/bin
 
-mkdir /var/www/fastqc
-/usr/local/share/FastQC/fastqc 100k_1.fq 100k_2.fq -o /var/www/fastqc
+cd /mnt
 
-#shutdown -r now
+curl -O http://athyra.idyll.org/~t/ecoli-v41.fa
+curl ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR390/SRR390202/SRR390202_1.fastq.gz | gunzip -c | head -800000 > raw-reads.fq
+curl https://s3.amazonaws.com/public.ged.msu.edu/SRR390202.pe.qc.fq.gz | gunzip -c | head -800000 > qc-reads.fq
+
+/usr/local/bin/bowtie-build ecoli-v41.fa ecoli-v41
+/usr/local/bin/bowtie -p 2 ecoli-v41 -q raw-reads.fq raw-reads.map
+/usr/local/bin/bowtie -p 2 ecoli-v41 -q qc-reads.fq qc-reads.map
+git clone https://github.com/ngs-docs/ngs-scripts.git /root/ngs-scripts
+
+for i in *-reads.map
+do
+python /root/ngs-scripts/bowtie/map-profile.py $i > $i.count
+done
+
+shutdown -r now

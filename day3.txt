@@ -1,0 +1,25 @@
+Wed, Oct 16, 2013 - More sequencing; mapping mismatches; lists, dicts, fns
+##########################################################################
+
+
+Presentation
+============
+
+See `today's presentation <_static/2013-cse801-week3.pptx.pdf>`__.
+
+Mapping
+=======
+
+Let's explore some of the mismatch mapping via IPython Notebook.
+
+Go pick a random machine: visit the `Google doc for machine names
+<https://docs.google.com/spreadsheet/ccc?key=0ArcOEBWnXSBidEVPSll3VXhyQVZjRXZLT25Fb0VVX1E#gid=0>`__ and connect to IPython Notebook on that machine.
+
+Open class3-mismatches.ipynb; copy it; rename it.
+
+Lists, functions, and dictionaries
+==================================
+
+Open class3-lists-dicts-functions.ipynb on a remote machine; copy it; rename it.
+
+Or see a static copy: `in-class notebook <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class3-lists-dicts-functions.ipynb>`__.
