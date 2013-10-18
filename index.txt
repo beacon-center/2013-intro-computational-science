@@ -11,6 +11,8 @@ See http://ged.msu.edu/courses/2013-fall-cse-801/ for class information.
 .. toctree::
    :maxdepth: 1
 
+   helpful-resources
+
    hw3
    day3
    hw2
