@@ -1,0 +1,91 @@
+Homework 3 (due Tuesday, Oct 22nd, at 11:59pm PST)
+##################################################
+
+.. note::
+
+   Need help?  Go to http://angus.askbot.com/ to ask questions and see
+   other people's answers!
+
+.. note::
+
+   See :doc:`amazon/using-screen` for information on using screen.
+
+1. Annotate E. coli; compare annotations
+----------------------------------------
+
+Hint: you definitely want to coordinate with some other people on this one.
+Each Prokka run will take about 45 minutes.
+
+Start up an m1.xlarge.  Install BLAST (just the part under "Next,
+install BLAST", in :doc:`week2/blastkit`) and download ngs-scripts::
+
+   git clone https://github.com/ngs-docs/ngs-scripts /usr/local/share/ngs-scripts
+
+Next: install prokka, as per :doc:`week3/prokka-annotation``.
+
+Go to /mnt and download a bunch of velvet assemblies that I ran for you
+(as in :doc:`week2/assembly-lab`)::
+
+   cd /mnt
+   curl -O http://public.ged.msu.edu.s3.amazonaws.com/velvet-dn-ecoli.tar.gz
+   tar xzf velvet-dn-ecoli.tar.gz
+
+Run the command ``ls``; you should see about 11 assemblies, named
+``ecoli-kXX.fa``.
+
+Now, download the "official" E. coli MG 1655 file::
+
+   curl -O http://ftp.ncbi.nlm.nih.gov/genomes/Bacteria/Escherichia_coli_K_12_substr__MG1655_uid57779/NC_000913.faa
+
+and format it for BLAST::
+
+   formatdb -i NC_000913.faa -o T -p T
+
+Then, build and compare annotations by doing the following: for each
+E. coli file, run Prokka and construct a set of pairwise BLAST files::
+
+   /mnt/prokka-1.7/bin/prokka ecoli-k19.fa --outdir k19 --prefix k19
+
+   formatdb -i k19/k19.faa -o T -p T
+   blastall -i k19/k19.faa -d NC_000913.faa -p blastp -e 1e-12 -o k19.x.mg1655
+   blastall -d k19/k19.faa -i NC_000913.faa -p blastp -e 1e-12 -o mg1655.x.k19
+
+Finally, for each set of annotated E. coli files, calculate the
+orthologs and then count them::
+
+   python /usr/local/share/ngs-scripts/blast/blast-to-ortho-csv.py k19/k19.faa NC_000913.faa k19.x.mg1655 mg1655.x.k19 > k19-ortho.csv
+   wc -l k19-ortho.csv
+
+You should see output like this: ``3804 k19-ortho.csv``.  Record the
+number (3804) and the k value (19); do this for each of the E. coli
+assemblies & annotations, then put the list in a spreadsheet and send
+to me.
+
+2. Programming in Python: lists and dictionaries and functions, oh my! part 2
+-----------------------------------------------------------------------------
+
+Log in to your EC2 instance via SSH and install ipythonblocks::
+
+   pip install ipythonblocks
+
+and Ruby/Ruby gems::
+
+   apt-get install -y ruby1.9.1 rubygems
+
+Then install 'gist'::
+
+   gem install gist
+
+and download the class 3 notebook::
+
+   cd /usr/local/notebooks
+   curl -O https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/class3-lists-dicts-functions.ipynb
+
+Connect to IPython Notebook ('https://' + your EC2 machine name) and
+solve the problems in hw2-ipythonblocks.ipynb.  Rename the notebook to
+something that has your identifier in it, download it, and e-mail it to
+me as an attachment.
+
+Note that 'class2-ipythonblocks' contains an introduction to lists and
+dictionaries, while 'hw1-ipythonblocks-SOLUTIONS' shows the solutions to the
+HW.
