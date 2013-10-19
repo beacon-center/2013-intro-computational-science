@@ -68,7 +68,7 @@ to me.
 
       for i in {19..51..2}
       do
-         /mnt/prokka-1.7/bin/prokka ecoli-k${i}.fa --outdir k${i}--prefix k${i}
+         /mnt/prokka-1.7/bin/prokka ecoli-k${i}.fa --outdir k${i} --prefix k${i}
 	 # other commands involving ${i}
       done
 
