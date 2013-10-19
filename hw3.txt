@@ -21,6 +21,10 @@ install BLAST", in :doc:`week2/blastkit`) and download ngs-scripts::
 
    git clone https://github.com/ngs-docs/ngs-scripts /usr/local/share/ngs-scripts
 
+You'll also need screed::
+
+   pip install screed
+
 Next: install prokka, as per :doc:`week3/prokka-annotation`.
 
 Go to /mnt and download a bunch of velvet assemblies that I ran for you
