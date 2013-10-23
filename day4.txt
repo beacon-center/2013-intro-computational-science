@@ -1,0 +1,87 @@
+Wed, Oct 23, 2013 - More Python; Annotation; Scripting
+######################################################
+
+Python homework
+===============
+
+HW3 IPython Notebook solutions set: http://nbviewer.ipython.org/7120119
+
+Prokka and annotation evaluation
+================================
+
+What does Prokka do?  Basically annotation: finds non-coding and
+protein-coding genes; provides provisional names.
+
+Re HW3, how did we use Prokka here? Was there a clear "winner" in terms of k value? What further
+questions might we ask?
+
+BLAST output and parsing with Python
+------------------------------------
+
+Working with BLAST output: basic export from BLAST to CSV,
+
+   https://github.com/ngs-docs/ngs-scripts/blob/master/blast/blast-to-csv.py
+
+and also:
+
+   https://github.com/ngs-docs/ngs-scripts/blob/master/blast/blast-to-ortho-csv.py
+
+Automating stuff; scripting
+===========================
+
+One (a major) reason why the command line has been so successful is that
+it's pretty easy to write software that can mixed, matched, and placed in
+automated pipelines at the command line.
+
+See::
+
+      for i in {19..51..2}
+      do
+         /mnt/prokka-1.7/bin/prokka ecoli-k${i}.fa --outdir k${i} --prefix k${i}
+	 # other commands involving ${i}
+      done
+
+Note, this is a *completely* separate language from Python! This is shell
+programming, not Python programming.  It is possible to mix and match them
+but as a rule I try to write *complicated scripts* in Python and reserve
+shell programming for when I'm using the command line interactively.  This
+works for me but Your Mileage May Vary (YMMV).
+
+Shell scripts
+-------------
+
+"Scripts" can be written in many different languages: shell and Python are
+the two you have experience with, but R also.
+
+The idea is that you just put the commands you want to run into a file
+and then run that file with the right command: 'bash' for shell scripts,
+'python' for 
+
+To try it, do::
+
+   echo "echo hello, world" > hello.sh
+   bash hello.sh
+
+and::
+
+   echo "print 'hello, world'" > hello.py
+   python hello.py
+
+----
+
+Creating and editing these files is tricky, however.  Need to use a text
+editor: can use 'pico' locally
+(or other, more complicated editors); or TextEdit/TextWrangler remotely,
+then copy via Dropbox.
+
+----
+
+GitHub
+======
+
+Gists: place to store random "stuff".
+
+Github more generally: version controlled.
+
+Go to https://github.com/ngs-docs/ngs-scripts/; make sure you're logged in;
+click "fork".  Click edit.  Make some changes.  Save, with commit.
