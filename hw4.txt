@@ -1,0 +1,134 @@
+Homework 4 (due Tuesday, Oct 29th, at 11:59pm PST)
+##################################################
+
+Watch the videos below, and do the homework.
+
+Videos
+------
+
+Watch these videos (they're from last year, so there's a bit of a
+context gap at the beginning; to catch up, just connect to the IPython
+Notebook and run the contents of the 'course-00-update-notebooks'
+notebook, and you'll be good).
+
+1. `Loading data from local files <http://youtu.be/HL1Nuzog9kc>`__.
+
+2. `Using modules in Python: introducing 'math' and 'csv' <http://youtu.be/YHS9MJZTVwY>`__.
+
+See the Python stdlib `math docs
+<http://docs.python.org/library/math.html>`__ and `csv docs
+<http://docs.python.org/library/csv.html>`__.
+
+**Also** see Doug Hellmann's excellent intermediate introductions to
+these at his `Python Module of the Week (PyMOTW) site
+<http://www.doughellmann.com/PyMOTW/>`__: `math -- mathematical
+functions <http://www.doughellmann.com/PyMOTW/math/>`__ and `csv --
+comma-separated value files
+<http://www.doughellmann.com/PyMOTW/csv/>`__.  You don't *need* more
+than what I've shown in the screencast to do the homework, but you
+might consider skimming these to see what other goodies are available
+in these modules in the stdlib.
+
+4. `Introducing dictionaries <http://youtu.be/Pt0LlpDUcwk>`__.
+
+Also see the Software Carpentry lecture on dictionaries: http://software-carpentry.org/4_0/setdict/dict/
+
+5. `Plotting in ipython notebook with matplotlib <http://youtu.be/YSK3CboAOvU>`__.
+
+---
+
+Homework 3
+----------
+
+1. After you update the notebooks repository on your EC2 instance by
+   running the 'course-00-update-notebooks' notebook, you will have a
+   new directory '/usr/local/notebooks/quartet', containing four files:
+   q1.csv, q2.csv, q3.csv, and q4.csv.  Each of these files will be
+   available to your program as ::
+
+      '/usr/local/notebooks/quartet/q1.csv'
+
+   etc. You can see their contents here:
+
+      https://github.com/beacon-center/intro-computational-science/tree/master/quartet
+
+   Write a notebook to:
+
+   a. Load in the data in these files into two lists.  Please do this
+      using a single function that takes a filename as an argument and
+      returns two lists, x and y -- you might want to name them x1 and y1
+      for q1.csv, x2 and y2 for q2.csv, etc.
+
+   b. Calculate and print the average and standard deviation of y1,
+      y2, y3, and y4.
+
+   c. Plot the x and y points on four different plots.
+
+   Hand in the homework by uploading it as a gist: log in via ssh,
+   and run ::
+
+      apt-get install -y ruby1.9.1 rubygems
+
+   Then install 'gist'::
+
+      gem install gist
+
+   and when you're done with the notebook, save it, and execute
+   '!gist notebook-name.ipynb'.  Then send me the gist info.
+
+2. Write a function to 'invert' dictionaries, i.e. the function should
+   take a single dictionary, and create a new dictionary that contains
+   all of the values from the first dictionary as keys in the second,
+   and all of the keys from the first dictionary as values associated with
+   the appropriate key in the second dictionary.
+
+   One possible approach:
+
+     Do (b) by hand (i.e. no functions or loops), first; just write out
+     the statements to create a new dictionary and assign the correct
+     values to it.  Then do (c), too.
+
+   Another approach:
+
+     First, write a function that takes in a dictionary and returns
+     a new, empty dictionary.
+
+     Second, modify the function so that it prints out each key/value
+     pair in the input dictionary.
+
+     Third, modify the function so that it prints out each value, key
+     pair.  (i.e. flip the order of things in the print statement.)
+
+     Fourth, modify the function so that it assigns the value/key
+     pair to the new dictionary rather than just printing the value/key.
+
+   For the homework,
+
+   a. Write the function; name it something like 'invert_d'.
+
+   b. Take the following test dictionary (you can copy/paste into the notebook)::
+
+        first_d = { 'first': 1, 'second': 2 }
+
+      and make sure your function turns it into this::
+
+        { 1: 'first', 2: 'second' }
+
+      Write this as an assert statement::
+
+        assert invert_d(first_d) == test_d
+
+      Note!  If you swipe some online code it will probably not pass this
+      test, so be careful :).
+
+   c. Observe what happens when you pass in this dictionary::
+
+        bad_d = { 'one': 1, 'uno': 1 }
+
+      Explain what happens in your own words (English, please...).
+      Is this 'expected' behavior?  Why or why not?
+
+      Bonus pixie dust: Name one or more possible alternatives to this
+      behavior.
+
+  Also hand this notebook in as a gist.
