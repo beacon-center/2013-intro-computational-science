@@ -13,6 +13,7 @@ See http://ged.msu.edu/courses/2013-fall-cse-801/ for class information.
 
    helpful-resources
 
+   day5
    hw4
    day4
    hw3

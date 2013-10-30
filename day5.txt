@@ -1,0 +1,60 @@
+Wed, Oct 30, 2013 -- plotting, fitting, RNAseq, and mapping
+###########################################################
+
+HW overview
+===========
+
+Let's go over the homework briefly.
+
+mRNAseq
+=======
+
+I have a full de novo mRNAseq pipeline here:
+
+   https://khmer-protocols.readthedocs.org/en/latest/
+
+it involves many of the same steps that you have already run in other
+guises: filter and trim reads, normalize, and assemble.  It also
+includes calling gene families, annotating (naming the sequences
+something), and doing differential expression calculation.
+
+It takes about a week so I'm not going to ask you to run it :).
+
+However, for the homework, one option will be to do some differential
+expression analysis, so I thought I'd show you around the data.
+
+Data loading, plotting, fitting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See notebook at: http://nbviewer.ipython.org/7236897
+
+----
+
+Plotting:
+
+Note, you can explore functioning code from the `matplotlib
+gallery <http://matplotlib.org/gallery.html>`__ by using %loadpy inside
+of IPython Notebook -- for example, put ::
+
+   %loadpy http://matplotlib.org/mpl_examples/showcase/integral_demo.py
+
+into a notebook and execute the cell.
+
+----
+
+So, the point of all this Python stuff is that at some point you may want
+to investigate your data ...by hand! *gasp*  In that case you will need
+to know, minimally, how to load your data in and poke at it.
+
+Mapping and variant calling
+===========================
+
+While we don't have a general protocol for variant calling,
+it's in some ways easier.  Basically, you "map" the reads to
+a reference, and then look to see where they differ.
+
+We're going to be looking at data from one of Lenski's experiments: `Genomic analysis of a key innovation in an experimental E. coli population <http://www.nature.com.proxy1.cl.msu.edu/nature/journal/v489/n7417/full/nature11514.html>`__.
+
+`Genome of the reference strain here <http://www.ncbi.nlm.nih.gov/nuccore/254160123?report=graph&tracks=[key:gene_model_track,name:Genes---Unnamed,display_name:Genes,annots:Unnamed,Options:MergePairs,SNPs:false,CDSProductFeats:true,ShowLabelsForAllFeatures:true][key:feature_track,name:Genes---other,display_name:Genes%20-%20other,subkey:ncRNA,annots:other,Layout:Adaptive][key:feature_track,name:Genes---tRNA,display_name:Genes%20-%20tRNA,subkey:tRNA,annots:tRNA,Layout:Adaptive][key:SNP_track,name:SNP,annots:SNP,Layout:Adaptive][key:SNP_Bins_track,name:Clinical%20Variants][key:SNP_Bins_track,name:Cited%20Variants][key:GWAS_track,name:GWAS%20Tracks,display_name:Association%20Results]>`__.
+
+`Tablet viewer <http://bioinf.scri.ac.uk/tablet/>`__
