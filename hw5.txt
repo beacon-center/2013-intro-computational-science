@@ -271,7 +271,7 @@ Problem: Load in data & plot
 1. Please build an IPython Notebook that loads in the sample 1 and
    sample 6 data sets and plots the expression levels of genes in
    sample 1 on the X axis and sample 6 on the Y axis; below is some
-   code taken from @@in-class notebook that you can adapt.
+   code taken from the `in class notebook <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/day5-mRNAseq-quant.ipynb>`__ that you can adapt.
 
 2. Load in the 'genes.changed' file (hint: you only need column 1) and
    plot the locations of genes that have changed.
@@ -341,5 +341,3 @@ Code to load in the '.changed' file::
             continue
         d[gene_id] = (PPEE, PPDE, postfc, realfc)
     return d
-
-.. @post quant
