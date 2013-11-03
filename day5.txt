@@ -53,7 +53,7 @@ While we don't have a general protocol for variant calling,
 it's in some ways easier.  Basically, you "map" the reads to
 a reference, and then look to see where they differ.
 
-We're going to be looking at data from one of Lenski's experiments: `Genomic analysis of a key innovation in an experimental E. coli population <http://www.nature.com.proxy1.cl.msu.edu/nature/journal/v489/n7417/full/nature11514.html>`__.
+We're going to be looking at data from one of Lenski's experiments: `Genomic analysis of a key innovation in an experimental E. coli population <http://www.nature.com/nature/journal/v489/n7417/full/nature11514.html>`__.
 
 `Genome of the reference strain here <http://www.ncbi.nlm.nih.gov/nuccore/254160123?report=graph&tracks=[key:gene_model_track,name:Genes---Unnamed,display_name:Genes,annots:Unnamed,Options:MergePairs,SNPs:false,CDSProductFeats:true,ShowLabelsForAllFeatures:true][key:feature_track,name:Genes---other,display_name:Genes%20-%20other,subkey:ncRNA,annots:other,Layout:Adaptive][key:feature_track,name:Genes---tRNA,display_name:Genes%20-%20tRNA,subkey:tRNA,annots:tRNA,Layout:Adaptive][key:SNP_track,name:SNP,annots:SNP,Layout:Adaptive][key:SNP_Bins_track,name:Clinical%20Variants][key:SNP_Bins_track,name:Cited%20Variants][key:GWAS_track,name:GWAS%20Tracks,display_name:Association%20Results]>`__.
 

@@ -1,0 +1,345 @@
+Homework 5 (due Friday, November 8, at 11:59pm PST)
+###################################################
+
+1. Fitting
+----------
+
+Do a linear fit to each of the Anscombe's Quartet data sets, and plot
+the lines and data points.  Here is some simple example code for doing
+a linear fit to x and y in Python::
+
+   x = [1,2,3,4]
+   y = [3,5,7,10] # 10, not 9, so the fit isn't perfect
+
+   fit = polyfit(x,y,1)
+   fit_fn = poly1d(fit) # fit_fn is now a function which takes in x and returns an estimate for y
+
+   plot(x,y, 'yo', x, fit_fn(x), '--k')
+
+Submit as usual (done in an IPython Notebook, submitted via a gist; send
+me the nbviewer URL).
+
+2. Variant calling
+------------------
+
+(Please do either this, or expression analysis, or both. You only need to do one.)
+
+The below data is from one of Rich Lenski's LTEE papers, the one on
+`the evolution of citrate consumption in LTEE
+<http://www.nature.com/nature/journal/v489/n7417/full/nature11514.html>`__.
+
+Install software
+~~~~~~~~~~~~~~~~
+
+You'll want an m1.large or m1.xlarge for this.
+
+First, we need to install the `BWA aligner
+<http://bio-bwa.sourceforge.net/>`__::
+
+   cd /root
+   wget -O bwa-0.7.5.tar.bz2 http://sourceforge.net/projects/bio-bwa/files/bwa-0.7.5a.tar.bz2/download
+
+   tar xvfj bwa-0.7.5.tar.bz2
+   cd bwa-0.7.5a
+   make
+
+   cp bwa /usr/local/bin
+
+We also need a new version of `samtools <http://samtools.sourceforge.net/>`__::
+
+   cd /root
+   curl -O -L http://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
+   tar xvfj samtools-0.1.19.tar.bz2
+   cd samtools-0.1.19
+   make
+   cp samtools /usr/local/bin
+   cp bcftools/bcftools /usr/local/bin
+   cd misc/
+   cp *.pl maq2sam-long maq2sam-short md5fa md5sum-lite wgsim /usr/local/bin/
+
+Download data
+~~~~~~~~~~~~~
+
+Download the reference genome and the resequencing reads::
+
+   cd /mnt
+
+   curl -O http://athyra.idyll.org/~t/REL606.fa.gz
+   gunzip REL606.fa.gz
+
+   curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR098/SRR098042/SRR098042.fastq.gz
+
+Note, this last URL is the "Fastq files (FTP)" link from the European
+Nucleotide Archive (ENA) for this sample:
+http://www.ebi.ac.uk/ena/data/view/SRR098042.
+
+Do the mapping
+~~~~~~~~~~~~~~
+
+Now let's map all of the reads to the reference.  Start by indexing the
+reference genome::
+
+   cd /mnt
+
+   bwa index REL606.fa 
+
+Now, do the mapping of the raw reads to the reference genome::
+
+   bwa aln REL606.fa SRR098042.fastq.gz  > SRR098042.sai
+
+Make a SAM file (this would be done with 'sampe' if these were paired-end
+reads)::
+
+   bwa samse REL606.fa SRR098042.sai SRR098042.fastq.gz > SRR098042.sam
+
+This file contains all of the information about where each read hits
+on the reference.
+
+Next, index the reference genome with samtools::
+
+   samtools faidx REL606.fa
+
+Convert the SAM into a BAM file::
+
+   samtools import REL606.fa.fai SRR098042.sam SRR098042.bam
+
+Sort the BAM file::
+
+   samtools sort SRR098042.bam SRR098042.sorted
+
+And index the sorted BAM file::
+
+   samtools index SRR098042.sorted.bam 
+
+At this point you can visualize with tview or Tablet.
+
+'samtools tview' is a text interface that you use from the command
+line; run it like so::
+
+   samtools tview SRR098042.sorted.bam REL606.fa
+
+The '.'s are places where the reads align perfectly in the forward direction,
+and the ','s are places where the reads align perfectly in the reverse
+direction.  Mismatches are indicated as A, T, C, G, etc.
+
+You can scroll around using left and right arrows; to go to a specific
+coordinate, use 'g' and then type in the contig name and the position.
+For example, type 'g' and then 'rel606:553093<ENTER>' to go to
+position 553093 in the BAM file.
+
+For the `Tablet viewer <http://bioinf.scri.ac.uk/tablet/>`__, click on
+the link and get it installed on your local computer.  Then, start it
+up as an application.  To open your alignments in Tablet, you'll need
+three files on your local computer: ``REL606.fa``, ``SRR098042.sorted.bam``,
+and ``SRR098042.sorted.bam.bai``.  You can copy them over using Dropbox,
+for example.
+
+Calling SNPs
+~~~~~~~~~~~~
+
+You can use samtools to call SNPs like so::
+
+   samtools mpileup -uD -f REL606.fa SRR098042.sorted.bam | bcftools view -bvcg - > SRR098042.raw.bcf
+
+(See the 'mpileup' docs `here <http://samtools.sourceforge.net/mpileup.shtml>`__.)
+
+Now convert the BCF into VCF::
+
+   bcftools view SRR098042.raw.bcf > SRR098042.vcf
+
+Examining SNPs
+~~~~~~~~~~~~~~
+
+You can load the VCF file with this code in IPython notebook::
+
+   import csv
+
+   def load_vcf(filename):
+       fp = open(filename, 'rb')
+       r = csv.reader(fp, delimiter='\t')
+    
+       snp_calls = []
+       for n, row in enumerate(r):
+           if row[0].startswith('#'):
+               continue
+           chr, pos, _, ref, alt = row[:5]
+           pos = int(pos)
+
+           snp_calls.append((chr, pos, ref, alt))
+       return snp_calls
+
+The full filename should be ``/mnt/SRR098042.vcf``.
+
+----
+
+Look at a few of the locations in tview or Tablet.  Do you believe
+the variant calls?
+
+Problems
+~~~~~~~~
+
+1. Download the FASTQ.GZ file for SRR098038, and call SNPs.
+
+2. Compare a few the SNPs in SRR098038 with the SNPs from SRR098042.
+   Are the SNPs in one a subset or superset of the SNPs in the other?
+
+3. SRR098038 is one of the Cit+ strains from 38,000 generations.  Go find the
+   location of the mutS mutation by finding the mutS gene in `the genome of the reference strain here <http://www.ncbi.nlm.nih.gov/nuccore/254160123?report=graph&tracks=[key:gene_model_track,name:Genes---Unnamed,display_name:Genes,annots:Unnamed,Options:MergePairs,SNPs:false,CDSProductFeats:true,ShowLabelsForAllFeatures:true][key:feature_track,name:Genes---other,display_name:Genes%20-%20other,subkey:ncRNA,annots:other,Layout:Adaptive][key:feature_track,name:Genes---tRNA,display_name:Genes%20-%20tRNA,subkey:tRNA,annots:tRNA,Layout:Adaptive][key:SNP_track,name:SNP,annots:SNP,Layout:Adaptive][key:SNP_Bins_track,name:Clinical%20Variants][key:SNP_Bins_track,name:Cited%20Variants][key:GWAS_track,name:GWAS%20Tracks,display_name:Association%20Results]>`__.  Do you find the mutation?  What is it, precisely? (Coordinates & ref -> variant.)
+
+Hand in your two VCF files, together with your answer for #3.
+
+.. @Talk to Rich and Jeff.
+
+3. RNAseq expression analysis
+-----------------------------
+
+(Please do either this, or variant calling, or both. You only need to do one.)
+
+Here we're going to look at RNAseq differential expression.  We're
+going to be using data generated from running the `Eel Pond mRNAseq
+protocol <https://khmer-protocols.readthedocs.org/en/latest/>`__.  You
+can feel free to run through all of this -- it goes through a complete
+de novo assembly and quantitation of a bunch of mRNAseq data -- but the
+whole thing takes about a week, so ... you might not want to.  Below,
+I've given you access to some of the output files instead :).
+
+Install software
+~~~~~~~~~~~~~~~~
+
+You'll want an m1.large or m1.xlarge for this.
+
+Start by installing R and some R packages::
+
+   apt-get -y install r-base-core r-cran-gplots
+
+Next, install the `EBSeq
+<http://www.biostat.wisc.edu/~kendzior/EBSEQ/>`__ package for
+calculating differential expression, which comes as part of `RSEM
+<http://deweylab.biostat.wisc.edu/rsem/>`__, the package we used in
+khmer-protocols for calculating expression levels::
+
+   cd /root
+   curl -O http://deweylab.biostat.wisc.edu/rsem/src/rsem-1.2.7.tar.gz
+   tar xzf rsem-1.2.7.tar.gz
+   cd rsem-1.2.7
+   make
+   cd EBSeq
+   make
+
+   echo 'export PATH=$PATH:/root/rsem-1.2.7' >> ~/.bashrc
+   source ~/.bashrc
+
+Download data
+~~~~~~~~~~~~~
+
+Create a working directory::
+
+   cd /mnt
+   mkdir diffexpr
+   cd diffexpr
+
+   curl -O http://athyra.idyll.org/~t/rsem-data.tar.gz
+   tar xvf rsem-data.tar.gz
+
+This will result in four files, ``{1,2,6,7}.fq.genes.results``.  These
+are the first two 0 Hour and the first two 6 Hour time points from the
+`Tulin et al. study <http://www.evodevojournal.com/content/4/1/16>`__
+on Nematostella development, run through the entire Eel Pond protocol
+(see khmer-protocols, above).
+
+Calculate differential expression
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To do the differential expression calculation with EBSeq::
+
+   cd /mnt/diffexpr
+
+   rsem-generate-data-matrix {1,2,6,7}.fq.genes.results > genes.matrix
+   rsem-run-ebseq genes.matrix 2,2 genes.changed
+
+Here, the '2,2' means there are 2 conditions, each with two replicates.
+
+The EBSeq output will be in 'genes.changed'.  `Read the docs
+<http://deweylab.biostat.wisc.edu/rsem/rsem-run-ebseq.html>`__ to
+understand what's in the output file -- you're most interested in the
+PPDE (posterior probability that a transcript is differentially expressed)
+and the PostFC (posterior fold change) columns, columns 4 and 5.
+
+Problem: Load in data & plot
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Please build an IPython Notebook that loads in the sample 1 and
+   sample 6 data sets and plots the expression levels of genes in
+   sample 1 on the X axis and sample 6 on the Y axis; below is some
+   code taken from @@in-class notebook that you can adapt.
+
+2. Load in the 'genes.changed' file (hint: you only need column 1) and
+   plot the locations of genes that have changed.
+
+   A tip: instead of iterating over all the keys in the sample1 dictionary,
+   you can iterate over just the keys in the dictionary created to hold
+   the results of the 'genes.changed' file.
+
+3. Grab the results in http://athyra.idyll.org/~t/rsem-data2.tar.gz --
+   they are additional replicates (3.fq.genes.results and
+   8.fq.genes.results).  Redo the differential expression analysis &
+   plotting (note: use '3,3' for rsem-run-ebseq).
+
+----
+
+A function to load in a ``genes.results`` file::
+
+   import csv
+
+   def load_results(filename):
+       r = csv.DictReader(open(filename, 'rb'), delimiter='\t')
+       results = {}
+       for row in r:
+           gene = row['gene_id']
+           results[gene] = row
+        
+       return results
+
+Code to extract the expression values (FPKM) for two samples and put
+them in numpy array::
+
+   sample1 = load_results('1.fq.genes.results') # these are replicates
+   sample2 = load_results('2.fq.genes.results') 
+
+   sample1v2 = []
+   for k in sample1:
+       s1 = float(sample1[k]['FPKM'])
+       s2 = float(sample2[k]['FPKM'])
+    
+       if s1 == 0 or s2 == 0:
+           continue
+       else:
+           sample1v2.append((s1, s2))
+    
+   sample1v2 = numpy.array(sample1v2)
+
+Code to plot sample 1 vs sample 2::
+
+   x = plot(sample1v2[:,0], sample1v2[:,1], 'bo', alpha=0.1)
+   ax = axes()
+   ax.set_yscale('log')
+   ax.set_xscale('log')
+
+Code to load in the '.changed' file::
+
+   def load_changed(filename, ppee_threshold=.05):
+    d = {}
+    r = csv.reader(open(filename, 'rb'), delimiter='\t')
+    r.next()
+    for row in r:
+        gene_id, PPEE, PPDE, postfc, realfc = row
+        PPEE=float(PPEE)
+        PPDE=float(PPDE)
+        postfc = float(postfc)
+        realfc = float(realfc)
+        if PPEE > ppee_threshold: # skip those with probability of equal expression > 0.05
+            continue
+        d[gene_id] = (PPEE, PPDE, postfc, realfc)
+    return d
+
+.. @post quant
