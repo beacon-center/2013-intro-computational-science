@@ -4,9 +4,7 @@ Wed, Nov 6, 2013 -- Introduction to evolutionary digital modeling
 Evolutionary digital modeling
 ===========
 
-For the first portion of the evolutionary digital modeling (EDM) classes, we will go over what EDMs are and why they are used. Several experts who use EDMs in their research will give brief introductions to the three major levels of EDMs.
-
-`evolutionary game theory <http://en.wikipedia.org/wiki/Evolutionary_game_theory>`__
+For the first portion of the evolutionary digital modeling (EDM) classes, we will go over what EDMs are and why they are used. Several experts who use EDMs in their research will give brief introductions to the three major types of EDMs.
 
 `Arend Hintze <http://alproductions.us/>`__ will be giving a 30-minute introduction to `evolutionary game theory <http://en.wikipedia.org/wiki/Evolutionary_game_theory>`__ (EGT).
 
@@ -17,5 +15,5 @@ For the first portion of the evolutionary digital modeling (EDM) classes, we wil
 Homework
 ===========
 
-We will briefly go over the `Avida homework assignment <http://nbviewer.ipython.org/urls/github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb>`__. 
+We will briefly go over the `Avida homework assignment <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw6-The%2520evolutionary%2520origin%2520of%2520complex%2520features.ipynb>`__. 
 
