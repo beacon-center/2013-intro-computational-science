@@ -1,4 +1,4 @@
-Wed, Nov 6, 2013 -- intro to evolutionary digital modeling
+Wed, Nov 6, 2013 -- Introduction to evolutionary digital modeling
 ###########################################################
 
 Evolutionary digital modeling
@@ -6,13 +6,16 @@ Evolutionary digital modeling
 
 For the first portion of the evolutionary digital modeling (EDM) classes, we will go over what EDMs are and why they are used. Several experts who use EDMs in their research will give brief introductions to the three major levels of EDMs.
 
-<a href="http://alproductions.us/">Arend Hintze</a> will be giving a 30-minute introduction to <a href="http://en.wikipedia.org/wiki/Evolutionary_game_theory">evolutionary game theory</a> (EGT).
+`evolutionary game theory <http://en.wikipedia.org/wiki/Evolutionary_game_theory>`__
 
-<a href="http://www.heatherjgoldsby.com/Heather_Goldsby.html">Heather Goldsby</a> will be giving a 30-minute introduction to <a href="http://en.wikipedia.org/wiki/Avida">Avida</a> / <a href="http://en.wikipedia.org/wiki/Digital_organism">digital evolution</a>.
+`Arend Hintze <http://alproductions.us/>`__ will be giving a 30-minute introduction to `evolutionary game theory <http://en.wikipedia.org/wiki/Evolutionary_game_theory>`__ (EGT).
 
-<a href="http://www.randalolson.com">Randy Olson</a> will be giving a 20-minute introduction to embodied models of <a href="http://en.wikipedia.org/wiki/Artificial_life">artificial life</a>.
+`Heather Goldsby <http://www.heatherjgoldsby.com/>`__ will be giving a 30-minute introduction to `Avida <http://en.wikipedia.org/wiki/Avida>`__ / `digital evolution <http://en.wikipedia.org/wiki/Digital_organism>`__.
+
+`Randy Olson <http://www.randalolson.com>`__ will be giving a 20-minute introduction to embodied models of `artificial life <http://en.wikipedia.org/wiki/Artificial_life>`__.
 
 Homework
 ===========
 
-We will briefly go over the Avida homework assignment: http://nbviewer.ipython.org/urls/github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb
+We will briefly go over the `Avida homework assignment <http://nbviewer.ipython.org/urls/github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb>`__. 
+
