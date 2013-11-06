@@ -1,0 +1,18 @@
+Homework 6 (due Tuesday, November 12, at 11:59pm PST)
+#####################################################
+
+1. Avida
+----------
+
+Avida documentation is here: http://avida.devosoft.org/documentation/page/Main_Page
+
+The latest stable version of Avida can be downloaded here: http://avida.devosoft.org/download/
+
+See the class notebook that explains the relevant details for this homework: http://nbviewer.ipython.org/urls/github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb
+
+2. Homework
+----------
+
+Download the Avida homework notebook: http://www.github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb
+
+All of the homework problems are listed in the notebook. Turn in the completed notebook via the usual method (commit to Github + email me the nbviewer link).
