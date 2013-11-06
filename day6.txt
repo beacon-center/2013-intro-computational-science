@@ -8,7 +8,7 @@ For the first portion of the evolutionary digital modeling (EDM) classes, we wil
 
 `Arend Hintze <http://alproductions.us/>`__ will be giving a 30-minute introduction to `evolutionary game theory <http://en.wikipedia.org/wiki/Evolutionary_game_theory>`__ (EGT).
 
-`Dave Knoester <http://www.cse.msu.edu/~dk/>`__ will be giving a 30-minute introduction to `Avida <http://en.wikipedia.org/wiki/Avida>`__ / `digital evolution <http://en.wikipedia.org/wiki/Digital_organism>`__.
+`Chris Adami <http://adamilab.msu.edu/chris-adami/>`__ will be giving a 30-minute introduction to `Avida <http://en.wikipedia.org/wiki/Avida>`__ / `digital evolution <http://en.wikipedia.org/wiki/Digital_organism>`__.
 
 `Randy Olson <http://www.randalolson.com>`__ will be giving a 20-minute introduction to embodied models of `artificial life <http://en.wikipedia.org/wiki/Artificial_life>`__.
 
