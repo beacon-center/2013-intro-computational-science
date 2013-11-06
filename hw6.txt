@@ -8,11 +8,11 @@ Avida documentation is here: http://avida.devosoft.org/documentation/page/Main_P
 
 The latest stable version of Avida can be downloaded here: http://avida.devosoft.org/download/
 
-See the class notebook that explains the relevant details for this homework: http://nbviewer.ipython.org/urls/github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb
+See the `class homework <http://nbviewer.ipython.org/urls/github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb>`__ that explains the relevant details for this homework
 
 2. Homework
 ----------
 
-Download the Avida homework notebook: http://www.github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb
+Download the `Avida homework notebook <http://www.github.com/beacon-center/2013-intro-computational-science/blob/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb>`__.
 
 All of the homework problems are listed in the notebook. Turn in the completed notebook via the usual method (commit to Github + email me the nbviewer link).
