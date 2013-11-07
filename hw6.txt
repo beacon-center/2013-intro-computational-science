@@ -16,3 +16,5 @@ See the `class homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-
 Download the `Avida homework notebook <https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw6-The%20evolutionary%20origin%20of%20complex%20features.ipynb>`__.
 
 All of the homework problems are listed in the notebook. Turn in the completed notebook via the usual method (commit to Github + email me the nbviewer link). Be sure to include the data you use to generate the graphs.
+
+Email the homework solutions to Randy Olson: olsonran AT msu DOT edu
