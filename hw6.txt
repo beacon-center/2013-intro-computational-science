@@ -10,6 +10,8 @@ The latest stable version of Avida can be downloaded here: http://avida.devosoft
 
 See the `class homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw6-The%2520evolutionary%2520origin%2520of%2520complex%2520features.ipynb>`__ that explains the relevant details for this homework
 
+Videos are available showing you how to `download and install Avida <http://www.youtube.com/watch?v=H7wku4W1bBw>`__ and `how to work with Avida <http://www.youtube.com/watch?v=NGWkc0f2rP4>`__ once it's installed.
+
 2. Homework
 ----------
 
