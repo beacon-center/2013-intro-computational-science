@@ -1,0 +1,18 @@
+Wed, Nov 13, 2013 -- More plotting, data wrangling, and coding an evolutionary digital model
+###########################################################
+
+Homework 6 solutions
+===========
+
+We will briefly go over the solution to the `Avida homework assignment <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw6-The%2520evolutionary%2520origin%2520of%2520complex%2520features.ipynb>`__.
+
+We will cover how to wrangle and plot the data after Avida has generated it.
+
+We will also discuss the biological implications of the experiment as a class.
+
+Model in Homework 7
+===========
+
+We will walk through the model in the `evolutionary digital modeling homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal Foraging and the Evolution of Goal-Directed Cognition.ipynb>`__. You will be working with this model for your homework for the rest of the semester.
+
+Email the homework solutions to Randy Olson: olsonran AT msu DOT edu
