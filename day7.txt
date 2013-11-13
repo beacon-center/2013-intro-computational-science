@@ -1,6 +1,17 @@
 Wed, Nov 13, 2013 -- More plotting, data wrangling, and coding an evolutionary digital model
 ###########################################################
 
+Class on Nov. 27th?
+===========
+
+Nov. 27th is the day before Thanksgiving. I don't have a lecture planned for that day, but I can run a hands-on workshop to teach you how to use some advanced data management and plotting tools that will be valuable for your final project and future research if you work with data.
+
+Do we want to have class on Nov. 27th?
+
+Having class means I will be there to help you debug as we walk through the tools. You will also have video tutorials to optionally watch afterward.
+
+Not having class means you will only have online video tutorials and emails to help you with these tools.
+
 Homework 6 solutions
 ===========
 
