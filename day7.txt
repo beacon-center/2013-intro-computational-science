@@ -13,6 +13,6 @@ We will also discuss the biological implications of the experiment as a class.
 Model in Homework 7
 ===========
 
-We will walk through the model in the `evolutionary digital modeling homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal Foraging and the Evolution of Goal-Directed Cognition.ipynb>`__. You will be working with this model for your homework for the rest of the semester.
+We will walk through the model in the `evolutionary digital modeling homework <http://nbviewer.ipython.org/urls/https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__. You will be working with this model for your homework for the rest of the semester.
 
 Email the homework solutions to Randy Olson: olsonran AT msu DOT edu
