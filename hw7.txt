@@ -6,12 +6,12 @@ Homework 7 (due Tuesday, November 19, at 11:59pm PST)
 
 See the `IPythonBlocks introduction <http://2013-cse801.readthedocs.org/en/latest/hw1.html#work-through-some-programming-exercises>`__ from earlier in the semester if you need a refresher for IPythonBlocks.
 
-See the `class homework <http://nbviewer.ipython.org/urls/https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__ that explains the relevant details for this homework
+See the `class homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__ that explains the relevant details for this homework
 
 2. Homework
 ----------
 
-Download the `evolutionary digital modeling homework notebook <http://nbviewer.ipython.org/urls/https://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__.
+Download the `evolutionary digital modeling homework notebook <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__.
 
 All of the homework problems are listed in the notebook. Turn in the completed notebook via the usual method (commit to Github + email me the nbviewer link). Be sure to include the data you use to generate the graphs.
 
