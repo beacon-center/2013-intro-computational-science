@@ -6,7 +6,7 @@ Homework 6 solutions
 
 We will briefly go over the solution to the `Avida homework assignment <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw6-The%2520evolutionary%2520origin%2520of%2520complex%2520features.ipynb>`__.
 
-We will cover how to wrangle and plot the data after Avida has generated it.
+We will cover how to wrangle and plot the data after Avida has generated it. Video here: http://www.youtube.com/watch?v=gyBI6arfMzs
 
 We will also discuss the biological implications of the experiment as a class.
 
