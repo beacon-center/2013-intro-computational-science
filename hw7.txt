@@ -11,7 +11,7 @@ See the `class homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-
 2. Homework
 ----------
 
-Download the `evolutionary digital modeling homework notebook <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__.
+Download the `evolutionary digital modeling homework notebook <http://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__.
 
 All of the homework problems are listed in the notebook. Turn in the completed notebook via the usual method (commit to Github + email me the nbviewer link). Be sure to include the data you use to generate the graphs.
 
