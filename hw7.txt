@@ -8,7 +8,18 @@ See the `IPythonBlocks introduction <http://2013-cse801.readthedocs.org/en/lates
 
 See the `class homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__ that explains the relevant details for this homework
 
-2. Homework
+2. Tutorial videos
+----------
+
+I've prepared several tutorial videos for this homework.
+
+Working with the evolutionary model: http://www.youtube.com/watch?v=kXKJQHaFWnU
+
+Saving data to a file in Python: http://www.youtube.com/watch?v=irnj19jz8uI
+
+Computing and plotting estimated 95% confidence intervals in Python: http://www.youtube.com/watch?v=4N5Uo3XOTNQ
+
+3. Homework
 ----------
 
 Download the `evolutionary digital modeling homework notebook <http://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__.
