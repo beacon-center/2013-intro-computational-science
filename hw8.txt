@@ -1,0 +1,34 @@
+Homework 8 (due Tuesday, November 26, at 11:59pm PST)
+#####################################################
+
+1. IPythonBlocks
+----------
+
+See the `IPythonBlocks introduction <http://2013-cse801.readthedocs.org/en/latest/hw1.html#work-through-some-programming-exercises>`__ from earlier in the semester if you need a refresher for IPythonBlocks.
+
+2. Tutorial videos
+----------
+
+I've prepared several tutorial videos for this homework.
+
+Working with the evolutionary model: http://www.youtube.com/watch?v=kXKJQHaFWnU
+
+Saving data to a file in Python: http://www.youtube.com/watch?v=irnj19jz8uI
+
+Computing and plotting estimated 95% confidence intervals in Python: http://www.youtube.com/watch?v=4N5Uo3XOTNQ
+
+3. Final project
+----------
+
+Download the `evolutionary digital modeling homework notebook <http://raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__. You will be using the model from this notebook for the final project.
+
+For the first week of the final project, you will break into groups of up to 4 and decide as a group on an interesting (and feasible*) extension of the model. You may work alone on the final project, but I do not recommend it. Once you've decided on a group, assign a group representative and have them email me the name and email address of everyone in the group.
+
+I expect your group to formulate a testable hypothesis, with alternative hypotheses, that the extension of this model will explore. You should also begin running the model in replicate and gathering data to explore your hypotheses. I do not expect you to have all of the data gathered by next Wednesday, but I do expect to see reasonable progress.
+
+Turn in your progress on the final project via the usual method (commit to Github + email me the nbviewer link). Be sure to include the data you used to generate any graphs.
+
+Email the homework solutions to Randy Olson: olsonran AT msu DOT edu
+
+
+* Please contact me if you're unsure about the extension you want to pursue.

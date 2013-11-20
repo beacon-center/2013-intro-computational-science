@@ -1,0 +1,28 @@
+Wed, Nov 20, 2013 -- Running evolutionary models in replicate, calculating and plotting 95% confidence intervals
+###########################################################
+
+We will have class next week, Nov. 27th
+===========
+
+For those who missed class last week, we *will* be having class next week, Nov. 27th.
+
+Next week will be a hands-on workshop covering some useful Python scientific computing libraries. Be sure to bring your laptop.
+
+Homework 7 solutions
+===========
+
+We will go over the solution to the `evolutionary digital modeling homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__.
+
+This homework was tough, so we will dedicate plenty of class time to walk through it. Come to class with specific questions about the issues you ran in to.
+
+Homework 8 - Final project
+===========
+
+We will be expanding the model from the `evolutionary digital modeling homework <http://nbviewer.ipython.org/urls/raw.github.com/beacon-center/2013-intro-computational-science/master/notebooks/hw7-Animal%20Foraging%20and%20the%20Evolution%20of%20Goal-Directed%20Cognition.ipynb>`__ for a final project. This project will cover the next two weeks. You may work on this project in groups of up to 4 people, but you can do a solo project if you prefer.
+
+For the first week, you will decide as a group on an interesting (and feasible*) extension of the model and begin implementing it and gathering data from the model. For the second week, you will analyze the data, plot the data, and write up a 2-page report.
+
+Email the homework solutions to Randy Olson: olsonran AT msu DOT edu
+
+
+* Please contact me if you're unsure about the extension you want to pursue.
