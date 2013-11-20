@@ -24,6 +24,30 @@ Download the `evolutionary digital modeling homework notebook <http://raw.github
 
 For the first week of the final project, you will break into groups of up to 4 and decide as a group on an interesting (and feasible^) extension of the model. You may work alone on the final project, but I do not recommend it. Once you've decided on a group, assign a group representative. They will be the one to send in all homework submissions and reports for the group.
 
+Possible project ideas:
+
+*food regrowth/decay
+
+*starvation
+
+*predation
+
+*topographical barriers
+
+*mating and recombination
+
+*direction competition
+
+*migration
+
+*explore a variety of world sizes, patch sizes, and patch numbers to investigate how evolution of ARS changes in response to these variables.
+
+* add a predator
+
+* add different types of food resources with different values
+
+* add poison food type that harms the forager
+
 I expect your group to formulate a testable hypothesis, with alternative hypotheses, that the extension of this model will explore. You should also begin running the model in replicate and gathering data to explore your hypotheses. I do not expect you to have all of the data gathered by next Wednesday, but I do expect to see reasonable progress.
 
 Deliverables for this week should include:
