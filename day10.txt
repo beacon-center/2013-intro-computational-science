@@ -1,0 +1,21 @@
+Wed, Dec 4, 2013 -- The future of digital evolutionary modeling
+###########################################################
+
+Lectures
+===========
+
+We will have lectures on the following topics:
+
+Realistic simulations, e.g. EvoSphere: http://www.evosphere.org/
+
+Hybrid digital/biological models, e.g. https://www.sciencemag.org/content/337/6099/1181.summary (viewable w/ MSU subscription)
+
+Robots! e.g., http://users.ox.ac.uk/~bioc1048/Research_files/floreanoetal07.pdf
+
+
+Homework 9 - Final project report
+===========
+
+Prepare a 2-page report for your final project. Only the representative for your group needs to turn the report in. See details in the homework 9 section.
+
+Email the homework solutions to Randy Olson: olsonran AT msu DOT edu

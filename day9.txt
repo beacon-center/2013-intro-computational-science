@@ -1,0 +1,13 @@
+Wed, Nov 27, 2013 -- pandas, SciPy, and matplotlib for data analysis, statistics, and plotting
+###########################################################
+
+pandas, scipy, and matplotlib
+===========
+
+We will go over some tutorials on pandas, SciPy, and matplotlib.
+
+pandas & SciPy tutorial: http://www.randalolson.com/2012/08/06/statistical-analysis-made-easy-in-python/
+
+pandas video tutorial: http://vimeo.com/59324550
+
+matplotlib tutorial: http://matplotlib.org/users/pyplot_tutorial.html

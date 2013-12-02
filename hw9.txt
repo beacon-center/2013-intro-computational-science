@@ -1,0 +1,54 @@
+Homework 9 (due Tuesday, December 10, at 11:59pm PST)
+#####################################################
+
+1. Tutorials
+----------
+
+I've prepared several tutorial videos for this homework.
+
+Working with the evolutionary digital model: http://www.youtube.com/watch?v=kXKJQHaFWnU
+
+Saving data to a file in Python: http://www.youtube.com/watch?v=irnj19jz8uI
+
+Computing and plotting estimated 95% confidence intervals in Python: http://www.youtube.com/watch?v=4N5Uo3XOTNQ
+
+There are also several useful tutorials below.
+
+pandas & SciPy tutorial: http://www.randalolson.com/2012/08/06/statistical-analysis-made-easy-in-python/
+
+pandas video tutorial: http://vimeo.com/59324550
+
+matplotlib tutorial: http://matplotlib.org/users/pyplot_tutorial.html
+
+2. Final project report
+----------
+
+This week, you will prepare a 2-page final report on your findings from homework 8. Prepare it as a scientific report:
+
+* introduction to the problem and what you're studying
+
+* motivate why it's interesting
+
+* discuss related work (optional, but may strengthen your case for why it's interesting)
+
+* explain your methods for exploring the problem
+
+* show the data that you measured from your experiments
+
+* use statistics and your data to show what you discovered
+
+* discuss the possible implications of the findings
+
+* discuss the limitations of the findings
+
+* suggest possible followup projects
+
+Deliverables should include:
+
+* Final project report in PDF format
+
+* Code for the extended model
+
+* Raw data and code used for all data analysis and plotting (as a nbviewer link)
+
+**Make sure to include the names of everyone in your group in the final project report.** Email the homework solutions to Randy Olson: olsonran AT msu DOT edu
