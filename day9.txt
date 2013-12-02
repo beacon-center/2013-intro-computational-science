@@ -4,7 +4,7 @@ Wed, Nov 27, 2013 -- pandas, SciPy, and matplotlib for data analysis, statistics
 Installing pandas on EC2
 ===========
 
-Since pandas does not come installed by default on EC2, we need to install it ourselves. Run the following commands to update your EC2 node:
+Since pandas does not come installed by default on EC2, we need to install it ourselves. Run the following commands to update your EC2 node::
 
    # Update your apt-get:
    apt-get update
@@ -18,7 +18,7 @@ Since pandas does not come installed by default on EC2, we need to install it ou
    # Get pip
    curl --show-error --retry 5 https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python2.7
 
-The pandas module is built off of the NumPy module. Now we need to update NumPy to the latest version of it. Unfortunately, the automatic upgrading tools on EC2 don't seem to work right, so we need to update it manually.
+The pandas module is built off of the NumPy module. Now we need to update NumPy to the latest version of it. Unfortunately, the automatic upgrading tools on EC2 don't seem to work right, so we need to update it manually::
 
    # download the latest version of NumPy
    wget --no-check-certificate https://pypi.python.org/packages/source/n/numpy/numpy-1.8.0.zip#md5=6c918bb91c0cfa055b16b13850cfcd6e
@@ -38,11 +38,11 @@ The pandas module is built off of the NumPy module. Now we need to update NumPy 
    rm -r numpy-1.8.0/
    rm numpy-1.8.0.zip
    
-Finally, we can install pandas.
+Finally, we can install pandas::
 
    pip install pandas
 
-You should be able to use pandas on your EC2 nodes now. Try it out:
+You should be able to use pandas on your EC2 nodes now. Try it out::
 
    # download some test data
    wget https://raw.github.com/rhiever/ipython-notebook-workshop/master/parasite_data.csv
