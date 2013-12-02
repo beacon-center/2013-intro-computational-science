@@ -6,53 +6,53 @@ Installing pandas on EC2
 
 Since pandas does not come installed by default on EC2, we need to install it ourselves. Run the following commands to update your EC2 node:
 
-	# Update your apt-get:
-	apt-get update
-
-	# Pre-requisities
-	apt-get install build-essential gfortran gcc g++ curl wget python-dev
-
-	# Make sure you have the latest setup tools 
-	wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python2.7
-
-	# Get pip
-	curl --show-error --retry 5 https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python2.7
+   # Update your apt-get:
+   apt-get update
+   
+   # Pre-requisities
+   apt-get install build-essential gfortran gcc g++ curl wget python-dev
+   
+   # Make sure you have the latest setup tools 
+   wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python2.7
+   
+   # Get pip
+   curl --show-error --retry 5 https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python2.7
 
 The pandas module is built off of the NumPy module. Now we need to update NumPy to the latest version of it. Unfortunately, the automatic upgrading tools on EC2 don't seem to work right, so we need to update it manually.
 
-	# download the latest version of NumPy
-	wget --no-check-certificate https://pypi.python.org/packages/source/n/numpy/numpy-1.8.0.zip#md5=6c918bb91c0cfa055b16b13850cfcd6e
-	
-	# unzip the NumPy file and move into the install directory
-	unzip numpy-1.8.0.zip
-	cd numpy-1.8.0/
-	
-	# build NumPy
-	python setup.py build
-	
-	# install NumPy
-	python setup.py install
-	
-	# move back to the home directory and clean up
-	cd ~/
-	rm -r numpy-1.8.0/
-	rm numpy-1.8.0.zip
-	
+   # download the latest version of NumPy
+   wget --no-check-certificate https://pypi.python.org/packages/source/n/numpy/numpy-1.8.0.zip#md5=6c918bb91c0cfa055b16b13850cfcd6e
+   
+   # unzip the NumPy file and move into the install directory
+   unzip numpy-1.8.0.zip
+   cd numpy-1.8.0/
+   
+   # build NumPy
+   python setup.py build
+   
+   # install NumPy
+   python setup.py install
+   
+   # move back to the home directory and clean up
+   cd ~/
+   rm -r numpy-1.8.0/
+   rm numpy-1.8.0.zip
+   
 Finally, we can install pandas.
 
-	pip install pandas
-	
+   pip install pandas
+
 You should be able to use pandas on your EC2 nodes now. Try it out:
 
-	# download some test data
-	wget https://raw.github.com/rhiever/ipython-notebook-workshop/master/parasite_data.csv
-	
-	# import pandas and read some data
-	from pandas import *
-	
-	test_data = read_csv("parasite_data.csv")
-	print test_data
-	print test_data["Virulence"]
+   # download some test data
+   wget https://raw.github.com/rhiever/ipython-notebook-workshop/master/parasite_data.csv
+   
+   # import pandas and read some data
+   from pandas import *
+   
+   test_data = read_csv("parasite_data.csv")
+   print test_data
+   print test_data["Virulence"]
 
 pandas, scipy, and matplotlib
 ===========
