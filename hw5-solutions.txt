@@ -1,3 +1,8 @@
+HW 5.1 -- Anscombe's Quartet
+============================
+
+See `hw5-quartet-solutions <http://nbviewer.ipython.org/github/beacon-center/2013-intro-computational-science/blob/master/hw5-files/hw5-quartet-solutions.ipynb>`__.
+
 HW 5.2 -- variant calling
 =========================
 
@@ -17,5 +22,9 @@ commands::
 This will now give you variants in the original data set (SRR098042.vcf) and
 the evolved data set (SRR098038.vcf).
 
-.. @@ notebook.
+Now, let's examine them in the notebook: `hw5-variant-solutions.ipynb <http://nbviewer.ipython.org/github/beacon-center/2013-intro-computational-science/blob/master/hw5-files/hw5-variant-solutions.ipynb>`__.
 
+HW 5.3 -- mRNAseq differential expression
+=========================================
+
+See `hw5-mrnaseq-solutions <http://nbviewer.ipython.org/github/beacon-center/2013-intro-computational-science/blob/master/hw5-files/hw5-mrnaseq-solutions.ipynb>`__.
