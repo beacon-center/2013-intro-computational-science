@@ -1,0 +1,21 @@
+HW 5.2 -- variant calling
+=========================
+
+Just replace SRR098042 with SRR098038 in all of the variant calling
+commands::
+
+   cd /mnt
+   curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR098/SRR098038/SRR098038.fastq.gz
+   bwa aln REL606.fa SRR098038.fastq.gz  > SRR098038.sai
+   bwa samse REL606.fa SRR098038.sai SRR098038.fastq.gz > SRR098038.sam
+   samtools import REL606.fa.fai SRR098038.sam SRR098038.bam
+   samtools sort SRR098038.bam SRR098038.sorted
+   samtools index SRR098038.sorted.bam 
+   samtools mpileup -uD -f REL606.fa SRR098038.sorted.bam | bcftools view -bvcg - > SRR098038.raw.bcf
+   bcftools view SRR098038.raw.bcf > SRR098038.vcf
+
+This will now give you variants in the original data set (SRR098042.vcf) and
+the evolved data set (SRR098038.vcf).
+
+.. @@ notebook.
+
